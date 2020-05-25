@@ -1,3 +1,3 @@
-# angular-example-halbton
+# halbton-humi-angular-example
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-example-halbton)
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/halbton-humi-angular-example)
