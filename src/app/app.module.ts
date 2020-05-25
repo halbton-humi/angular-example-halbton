@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { AngularFireModule } from '@angular/fire';
+
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ProductListComponent } from './product-list/product-list.component';
