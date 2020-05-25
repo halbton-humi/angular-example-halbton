@@ -1,37 +1,30 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
-import { AppComponent } from './app.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { ProductAlertsComponent } from './product-alerts/product-alerts.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
+import { products } from "../products";
+import { CartService } from '../cart.service';
 
-@NgModule({
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-      { path: 'products/:productId', component: ProductDetailsComponent },
-    ])
-  ],
-  declarations: [
-    AppComponent,
-    TopBarComponent,
-    ProductListComponent,
-    ProductAlertsComponent,
-    ProductDetailsComponent
-  ],
-  bootstrap: [ AppComponent ]
+@Component({
+  selector: "app-product-details",
+  templateUrl: "./product-details.component.html",
+  styleUrls: ["./product-details.component.css"]
 })
-export class AppModule { }
+export class ProductDetailsComponent implements OnInit {
+  product;
 
+  constructor(
+    private route: ActivatedRoute,
+    private cartService: CartService
+  ) { }
 
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.product = products[+params.get('productId')];
+    });
+  }
+
+  addToCart(product) {
+    this.cartService.addToCart(product);
+    window.alert('Your product has been added to the cart!');
+  }
+}
